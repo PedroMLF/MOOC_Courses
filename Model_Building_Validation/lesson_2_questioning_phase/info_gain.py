@@ -1,4 +1,4 @@
-
+from functools import reduce
 import os
 import sys
 
@@ -146,6 +146,7 @@ def getXMarginalDist(joint_prob_dist):
 
 	for key in joint_prob_dist:
 		yVals = joint_prob_dist[key]
+		 
 		marginalVal = reduce(lambda x,y: x+y, [yVals[e] for e in yVals])
 
 		returnDict[key] = marginalVal
