@@ -46,4 +46,16 @@ by Rishi Pravahan and Don Dini (Udacity/AT&T)
 
 - The second approach is to use data with (delta_t, p), where delta_t is the time elapsed and p is the time until the next tweet.
 
+- _Inherent Variance_ happens when, for the same input point, the measured value is differente due to some process noise.
+
+- Uncaptured features may increase a lot the variance/uncertainty on the data.
+
+- _Entropy_ allows to measure the degree of skew in a probability distribution. It is calculated as minus the sum of each probability times its log. Entropy has a minimum value of zero (absolute certainty about the value a given probability distribution will take) and has maximum value of one (every value of a given probability distribution is equally probable).
+
+- Given X and Y, if entropy H(X) is greater than H(X | Y=y1), then this means that knowing that value of y has an impact. Consequently, the expected value of reduction of the entropy of X due to knowing Y is H(X) - H(X | Y), where H(X|Y) is the sum of entropy conditioned on y for every point of Y. This means that, the variable that has the biggest impact on the entropy of X is the one that reduces the entropy of X the most. The best feature to describe X is the one that keeps its entropy the largest.
+
+- This _information gain_ means that we want to use as modelling variables the ones that keep the entropy of the to-be predicted variable as high as possible (since not using them would cause us to miss a lot of information).
+
+- When using _covariance_ keep in mind that it is only concerned about linear variations. Calculating Cov(x,y) for y = x^2 yields a value of zero and clearly shows this. It's common that real-life problems have variables that don't correlate linearly between each other.
+
 
