@@ -59,5 +59,56 @@ Create Table College
 
 ---
 
+### Mini-course 2 - XML Data
 
+- Extensible markup language.
 
+- Tags describe the content.
+
+- Basic constructs
+    - Tagged elements
+    - Attributes
+    - Text
+
+|                |    Relational    |          XML         |
+|:--------------:|:----------------:|:--------------------:|
+|    Structure   |      Tables      |  Hierarchical (Tree) |
+|     Schema     | Fixed in advance |       Flexible       |
+|     Queries    |      Simple      |        Tricky        |
+|    Ordering    |       None       |        Implied       |
+| Implementation |      Native      | Add-on to Relational |
+
+- "Well" formed XML
+    - Single root element
+    - Matched tags, proper nesting
+    - Unique atributes within elements
+
+- A XML parser is responsible to check if a given XML document is well-formed.
+
+- It may be displayed by being translated to HTML by languages as CSS (cascading style sheet language) oor XSL (extensible style sheet language).
+
+- A XML document is sent to CSS/XSL interpreter (with rules) which output an HTML doc.
+
+**DTDs, IDs & IDREFs:**
+
+- Document Type Descriptor (DTD).
+
+- Now the XML parser also receives a DTD or XSD to verify that the XML document also complies with the content specific specifications.
+
+- DTD:
+    - Grammar like language that specifies elements, attributes, nesting, ordering and number of occurrences
+    - Allow IDs or IDREFs
+
+- Pros of using DTD:
+    - Programs can assume structure
+    - CSS/XSL can assume structure
+    - Allow to define specifications
+    - Makes documentation of data easier
+
+- Cons of using DTD:
+    - Less flexibility to change format, etc.
+    - If data is irregular it may be hard to specify structure
+
+**XML Schema:**
+
+_continue_
