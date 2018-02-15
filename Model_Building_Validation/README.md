@@ -26,6 +26,8 @@ by Rishi Pravahan and Don Dini (Udacity/AT&T)
 - Validation:
     - How well does the model generalize to unseen data?
 
+---
+
 ### Lesson 2: The Questioning Phase
 
 - The problem that is being studied is how long until someone tweets something.
@@ -58,4 +60,41 @@ by Rishi Pravahan and Don Dini (Udacity/AT&T)
 
 - When using _covariance_ keep in mind that it is only concerned about linear variations. Calculating Cov(x,y) for y = x^2 yields a value of zero and clearly shows this. It's common that real-life problems have variables that don't correlate linearly between each other.
 
+---
 
+### Lesson 3: The Modeling Phase
+
+- For the medicare data set the main question is "How do we detect anamolous charges?", followed by, how are anomalies defined After setting this, the question is what are the variables of interest.
+
+- Next we check if the correlation of the data is linear or non-linear using a scatter plot.
+
+- Scale variables: (f - min(f))/(max(f)-min(f))
+
+- The [pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) is given by covariance divided by the product of the standard deviation of x and y variables. 
+
+- Scaling the feature keeps the correlation between variables the same, while making easier to visualize them and to make computations with them.
+
+- The first model approach will be a non-parametric, via a [Kernel Density Estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation) with derived variable x = abs(f0-f1)/f0. Non-parametric models are very useful to go from discrete data to probability distributions.
+
+- Examples of kernels:
+    - [Parzen windows](http://www.personal.reading.ac.uk/~sis01xh/teaching/CY2D2/Pattern2.pdf) 
+    - [Gaussian Kernel](http://www.stat.wisc.edu/%7Emchung/teaching/MIA/reading/diffusion.gaussian.kernel.pdf.pdf)
+
+- We can vary the bandwidth to play around the bias and the variance.
+
+- To validate the estimation for the probability density there are two methods:
+    - Minimize [MISE (Mean Integrated Squared Error)](https://en.wikipedia.org/wiki/Mean_integrated_squared_error) or AMISE (Assymptotic MISE).
+    - Minimize KL DIvergence.
+
+- In the case of AMISE we get three terms as an approximation:
+    - A term that is inherent of the variance of the data.
+    - A squared bias term, that determines the smoothness of the estimate for differente bandwidths.
+    - A variance term that determines jaggedness of the estimate.
+
+- This means that choosing the bandwidth is choosing a trade-off between the bias and the variance of the prediction.
+
+- Bandwidth selection:
+    - For dimension 1 and kernel gaussian, Silverman's Rule of Thumb, h=((4 times sd^5)/(3n))^(1/5).
+    - For d dimensions, use Scott's Rule, H = (1/n^(d+4)) times squared(covariance matrix).
+
+- _continue_
