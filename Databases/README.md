@@ -85,7 +85,7 @@ Create Table College
 
 - A XML parser is responsible to check if a given XML document is well-formed.
 
-- It may be displayed by being translated to HTML by languages as CSS (cascading style sheet language) oor XSL (extensible style sheet language).
+- It may be displayed by being translated to HTML by languages as CSS (cascading style sheet language) or XSL (extensible style sheet language).
 
 - A XML document is sent to CSS/XSL interpreter (with rules) which output an HTML doc.
 
@@ -109,6 +109,24 @@ Create Table College
     - Less flexibility to change format, etc.
     - If data is irregular it may be hard to specify structure
 
-**XML Schema:**
+[Added Note](http://zvon.org/xxl/DTDTutorial/General/contents.html)
 
-_continue_
+**XML Schema (XSD):**
+
+- Another way of defining content-specific specifications.
+
+- It is written in xml as well.
+
+- Features not present in DTDs:
+    - Typed values
+    - Key declarations (values that have to be unique)
+    - References
+    - Currents constraints
+
+- Keys in XSD are specific to some parameter and not global as in DTD.
+
+- Default maximum value of occurrences is one.
+
+---
+
+### Mini-Course 3 - 
