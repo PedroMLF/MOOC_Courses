@@ -17,19 +17,21 @@
 #### XML Quiz
 
 **Q1:** We're interested in well-formed XML that satisfies the following conditions:
-    - It has a root element "tasklist"
-    - The root element has 3 "task" subelements
-    - Each of the "task" subelements has an attribute named "name"
-    - The values of the "name" attributes for the 3 tasks are "eat", "drink", and "play"
+- It has a root element "tasklist"
+- The root element has 3 "task" subelements
+- Each of the "task" subelements has an attribute named "name"
+- The values of the "name" attributes for the 3 tasks are "eat", "drink", and "play"
 
 Select, from the choices below, the well-formed XML that meets the above requirements. 
 
-> ```
-<tasklist>
+Answer:
+
+ ```
+ <tasklist>
   <task name="eat"></task>
   <task name="drink"></task>
   <task name="play"></task>
-</tasklist>```
+ </tasklist>```
 
 **Q2:** An XML document contains the following portion: 
 
@@ -48,11 +50,14 @@ Which of the following could be the INFO element specification in a DTD that the
 ```<EMP name = "Kermit">
     <ADDR>123 Sesame St.</ADDR>
     <PHONE type = "cell">555-1212</PHONE>
-</EMP>```
+    </EMP>
+```
 
  Which of the following could NOT be part of a DTD that the document matches? Note that there can be multiple ATTLIST declarations for a single element type; do not assume the only attributes allowed for an element type are the ones shown in the answer choice.
 
-> <!ATTLIST EMP ssNo CDATA #REQUIRED> 
+Answer:
+
+<!ATTLIST EMP ssNo CDATA #REQUIRED> 
 
 **Q4:** Here is a DTD: 
 ```<!DOCTYPE A [
@@ -79,17 +84,19 @@ Which of the following sequences of opening and closing tags matches this DTD? N
 
 Which of the following documents match the DTD? 
 
-> ```<meal>
-  <person name="Alice"/>
-  <person name="Bob"/>
-  <person name="Carol"/>
-  <person name="Dave"/>
-  <food name="salad"/>
-  <food name="turkey"/>
-  <food name="sandwich"/>
-  <eats diner="Alice" dish="turkey"/>
-  <eats diner="Bob" dish="salad"/>
-  <eats diner="turkey" dish="Dave"/>
+Answer:
+
+```<meal>
+ <person name="Alice"/>
+ <person name="Bob"/>
+ <person name="Carol"/>
+ <person name="Dave"/>
+ <food name="salad"/>
+ <food name="turkey"/>
+ <food name="sandwich"/>
+ <eats diner="Alice" dish="turkey"/>
+ <eats diner="Bob" dish="salad"/>
+ <eats diner="turkey" dish="Dave"/>
 </meal>```
 
 **Q6:** Study the following XML Schema specification: 
@@ -116,7 +123,9 @@ Which of the following documents match the DTD?
 
 Select, from the choices below, the XML that is valid according to the XML Schema specification above.
 
-> ```<person>
+Answer:
+
+```<person>
     <fname>John</fname>
     <initial>Q</initial>
     <lname>Public</lname>
