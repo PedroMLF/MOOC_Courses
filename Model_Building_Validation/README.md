@@ -84,7 +84,7 @@ by Rishi Pravahan and Don Dini (Udacity/AT&T)
 
 - To validate the estimation for the probability density there are two methods:
     - Minimize [MISE (Mean Integrated Squared Error)](https://en.wikipedia.org/wiki/Mean_integrated_squared_error) or AMISE (Assymptotic MISE).
-    - Minimize KL DIvergence.
+    - Minimize KL Divergence.
 
 - In the case of AMISE we get three terms as an approximation:
     - A term that is inherent of the variance of the data.
@@ -97,4 +97,22 @@ by Rishi Pravahan and Don Dini (Udacity/AT&T)
     - For dimension 1 and kernel gaussian, Silverman's Rule of Thumb, h=((4 times sd^5)/(3n))^(1/5).
     - For d dimensions, use Scott's Rule, H = (1/n^(d+4)) times squared(covariance matrix).
 
-- _continue_
+- The [Kullback-Leibler Divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) is a general method to compate probability distribution functions. IT can be thought as the information that is lost when a pdf g is used to approximate another pdf, f.
+
+- Using Multivariate KDEs give us joint pdfs, that may be used to draw conditional probabilities. 
+
+- The KDEs allow to get the shape of the data very easily and quickly.
+
+- On finding outliers:
+    - Use [Mahalanobis Distance](https://en.wikipedia.org/wiki/Mahalanobis_distance). Measures how far the values of data are from the central tendencies of the distributions.
+
+- Food for thought:
+    - Are outliers in bivariate data indicative of true outliers when the data has more dimensions?
+
+Answer:
+
+> Mahalanobis Distance is ideal for samples drawn from identical distribution. To find outliers in multidimensional data it is better to use richer methods, such as k-means. Ideally, we should inspect all variables that are uncorrelated to find outlier. 
+
+---
+
+### Lesson 4: The Validation Phase
