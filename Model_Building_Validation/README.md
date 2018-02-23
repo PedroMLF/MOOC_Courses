@@ -116,3 +116,14 @@ Answer:
 ---
 
 ### Lesson 4: The Validation Phase
+
+- The trained models should be tested on unseen data.
+
+- How to split the data:
+    - _Training data_, used to train the model.
+    - _Validation data_, used to select the model.
+    - _Test data_, used to report the perfomance of the model.
+
+- The ratio of the splits depends on the ammount of data it is available.
+
+- _continue ..._
