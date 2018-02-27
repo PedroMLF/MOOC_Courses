@@ -126,4 +126,25 @@ Answer:
 
 - The ratio of the splits depends on the ammount of data it is available.
 
-- _continue ..._
+- It is also necessary to clean the data and to select the features.
+
+- The chosen features are the ones with the highest disriminating power. (using techniques such as PCA and scaling the features).
+
+- **Loss function**: measures how far an estimated value of a quantity from the true value.
+
+- NOTE: Squared error loss is more sensible to outliers. The absolute error loss is not smooth when the difference is 0 which makes it troublesome to differentiate.
+
+- **Risk**: It's the expected value of the loss.
+
+- The expected value of the squared error loss will derive in three terms:
+    - _Irreducible Error_, variance around the true mean inherent in the data.
+    - _Squared Bias_
+    - _Variance_
+
+- Minimizing bias or variance requires a trade-off between them, since it may be impossible to reduce both at the same time.
+
+- Low complexity -> Low Variance/High Bias, may lead to underfitting the data
+
+- High complexity -> High Variance/Low Bias, may lead to overfitting the data
+
+- _continue_
