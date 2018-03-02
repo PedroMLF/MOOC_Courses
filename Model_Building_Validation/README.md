@@ -147,4 +147,44 @@ Answer:
 
 - High complexity -> High Variance/Low Bias, may lead to overfitting the data
 
-- _continue_
+- The [Vapnik-Chervonenkis dimension](https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_theory) allows to measure the complexity of the model. This quantity allows to bound the error of the model on the test set with a given accuracy. For linear models the expression is simply, h = m+1, where m is the number of dimensions/features.
+
+- The choice of the loss/risk depends on the problem formulation, which on its turn depends on the purpose of the model.
+
+- _Learning curves_ plot the risk/cost/score of a model vs the size of the training set and test set. The interest in using this kind of curves is that we may find that using a certain amount of data points yields the same results as using more. If it is possible to use less data, the models may be simpler, which has its advantages.
+
+- **Accuracy**: 
+    - Fraction of the predictions that are correct.
+    - Zero-one loss function
+    - Missclassification: Risk
+    - Ratio between the sum of (true positive + true negatives) by the number of examples.
+
+- Depending of the application, the cost of a false positive might outweigh the cost of a false negative. An example is, for instance, a money transaction fraud detection. It's better to decline a transaction that is honest than letting an illegal one through.
+
+- A [Confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix) is a very effective way of analyzing True/False Positive/Negative.
+
+- Type I Error: False Positive (Predicted positive when it was negative).
+
+- Type II Error: False Negative (Predicted negative when it was positive).
+
+- **Sensitivity**: Ratio between true positive and the sum of (True positives plus false negatives). This means it is the ratio of actual positives that were correctly predicted.
+
+- **Specificity**: Ratio between true negatives and the sum of (True negatives plus false positives). This means it is the ratio of actual negatives that were correctly predicted.
+
+- We can approach this problem by hypothesis testing. Given an Hypothesis I (null hypothesis) and Hypothesis II (alternate hypothesis). If the type I error for a given "cut value" for a given hypothesis is less then a predifined value (_significance value_), we fail to reject that class/reject the null hypothesis. The **power of the test is given by 1-sensititivy**.
+
+- A [ROC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) (receiver operating characteristic curve) plots the value of _sensitivity_ and _specificity_ for different "cut values". 
+
+- **Iso-perfomance lines**, are lines in ROC-space that lie in the same straight line. The perfomance of the models is given by the slope of the line. The models with more **AUC** (area under the curve), tend to perform better than the other models.
+
+- Now using a **one vs all** aproach instead of binary classification.
+
+- **Precision**: The ratio of true positive by the sum of (true positives plus false positives). Therefore it gives the ratio of positive predictions that were correct. It is a good metric to deal with classes where the samples are skewed, i.e., number of positive instances are small.
+
+- **Recall**: The ratio of true positives by the sum of (true positive plus false negatives). It's the same as sensitivity.
+
+- They are analyzed in a similar way of ROC curves, using _precision recall curves_.
+
+- Another way of combining precision and recall is through [F-beta score](https://en.wikipedia.org/wiki/F1_score). For instance, the F1 score is the [harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) between the precision and the recall.
+
+- F2 weights recall higher than precision. F0.5 weights precision highter than recall.
