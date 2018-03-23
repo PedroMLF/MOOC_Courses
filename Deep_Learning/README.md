@@ -4,7 +4,7 @@ This folder contains my solutions to the practical problems and some key notes r
 
 ---
 
-### Lecture 1 - Introduction and Tensors [Part1](https://documents.epfl.ch/users/f/fl/fleuret/www/dlc/dlc-slides-1a-introduction.pdf) [Part2](https://documents.epfl.ch/users/f/fl/fleuret/www/dlc/dlc-slides-1b-tensors.pdf)
+### Lecture 1 - Introduction and Tensors [Slides(1)](https://documents.epfl.ch/users/f/fl/fleuret/www/dlc/dlc-slides-1a-introduction.pdf) [Slides(2)](https://documents.epfl.ch/users/f/fl/fleuret/www/dlc/dlc-slides-1b-tensors.pdf)
 
 - Techniques used in practice consist of:
     - Defining a parametric model.
@@ -32,3 +32,28 @@ This folder contains my solutions to the practical problems and some key notes r
 - **Broadcasting** automatically expands dimensions of size 1, by replicating its coefficientes to the necessary dimensions to make the computations legal. For instance, summing a 4x1 tensor with a 1x5 tensor will yield a 4x5 tensor.
 
 - A tensor is a view of a **storage**, which a low-level 1d vector. The first coefficient of a tensor is at _storage offset_ in _storage_. To increment its index by k, it is necessary to move strike(k) elements in storage. For instance, to transform a storage with 20 blocks from 0 to 19 into a 3x2 [5,6; 9,10; 13,14] the storage offset is 5, the size is (3,2) and the stride is (4,1). Since the tranposed tensor shares the storage with the original tensor, we cannot "flatten" it into a 1d contiguous vector without a memory copy.
+
+---
+
+### Lecture 2 - Machine Learning Fundamentals [Slides](https://documents.epfl.ch/users/f/fl/fleuret/www/dlc/dlc-handout-2-ml-basics.pdf)
+
+**Learning from data**
+
+- Three categories of inference:
+    - Classification
+    - Regression
+    - Density estimation
+
+- In _classification_ we want to estimate the argument of y (the class) that maximizes the probability of P(Y=y|X=x). In _regression_ we want to estimate the expected value of Y given X=x. And in _density estimation_ we want to estime the probability distribution of x.
+
+- **Generative** classification methods have an explicit data model, whereas **discriminative** don't.
+
+**Risk**
+
+- Learning consists of finding a good function or set of parameters through a loss. For _classification_ it's usually a binary loss, for _regression_ something like the squared error and for _density estimation_, minus the logarithm of a estimated distribuion.
+
+- We are looking for a f with a small expected risk, being R(f) the expected value of the loss of a given _f_ on a given training example, _z_. Assuming the training samples are i.i.d we can obtain an estimate, the _empirical risk_. It is an unbiased estimator of the expected risk.
+
+**Over and under-fitting**
+
+_continue_
