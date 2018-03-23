@@ -56,4 +56,52 @@ This folder contains my solutions to the practical problems and some key notes r
 
 **Over and under-fitting**
 
-_continue_
+- When the error of the model decreases on the training set but increses in a independent test set, then the model is _overfitting_.
+
+- Using regularization may help attenuate this problem.
+
+- The _capacity_ of a set of predictors is the ability to model an arbitrary functional.
+
+- Over-fitting might be reduced by impoverishing the space of possible functions (less functionals, early stopping) or by making the choice of parameters less dependent on data (penalty on coefficients, margin maximization, ensemble methods).
+
+**Bias-variance dilemma**
+
+- The expect value of the squared error may be decomposed into a bias and a variance term. The _bias term_ quantifies how much the model fits to the data on average. The _variance term_ quantifies how much the model changes across datasets.
+
+- Reducing the capacity of the model increases the bias term. Increase the capacity of the models makes it vary a lot with the training data, and therefore increases variance.
+
+**Is all this probabilistic?**
+
+- Model fitting and regularization may be interpreted as Bayesian inference. This consists of modeling the parameters of a model as random quantities with a certain prior. With the values of the training data it is possible to estimate a posterior distribution of the parameters and from that, their most likely values.
+
+- _continue [1:01:05]_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
