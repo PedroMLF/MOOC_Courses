@@ -74,15 +74,29 @@ This folder contains my solutions to the practical problems and some key notes r
 
 - Model fitting and regularization may be interpreted as Bayesian inference. This consists of modeling the parameters of a model as random quantities with a certain prior. With the values of the training data it is possible to estimate a posterior distribution of the parameters and from that, their most likely values.
 
-- _continue [1:01:05]_
+- The value of the distribution of a certain parameter for a given data set may be decomposed into a portion of gaussian noise on Ys and a portion of gaussian noise on As. This leads to the intuition of regularization that, the stronger the prior, the more evidence needed to deviate from it.
 
+**Proper evaluation protocols**
 
+- Deep learning perfomance relies on parameter optimization, so one should be careful about parameter over-fitting through experiments. This means, don't use the test set scores to correct parameters.
 
+- The ideal development cycle is:
+    - Write code
+    - Train (iterate this)
+    - Test
+    - (Paper) 
 
+- Another way to deal with this is to:
+    - Use a development set.
+    - If the data is scarce, use cross-validation.
 
+**Standard clustering and embedding**
 
+- _K-means_, finds k centroids that span uniformly the training population.
 
+- _PCA_, looks for an "affine subspace" that spans the data.
 
+---
 
 
 
