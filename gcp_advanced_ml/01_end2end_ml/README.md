@@ -1,12 +1,14 @@
 # End-to-End Machine Learning with Tensorflow on GCP
 
+---
+
 ## Week 1
 
 ### Effective ML
 
 ![](images/01.png)
 
-To build effective ML you need:
+1. To build effective ML you need:
 - Big Data (implying batching and distribution).
 - Feature Engineering (mostly due to human insights).
 - Model Architectures (appropriate to the problem at hands).
@@ -31,3 +33,27 @@ To build effective ML you need:
 ### Datalab
 
 ![](images/03.png)
+
+---
+
+## Week 2
+
+### Creating the dataset
+
+1. What makes a feature "good"?
+
+- Be related to the objective.
+- Be known at prediction-time.
+- Be numeric with meaningful magnitude.
+- Have enough examples.
+- Bring human insight to the problem.
+
+2. Be mindful of data leakage
+
+3. Prototyping should be made on a smaller subsample of the whole dataset. This makes debugging much faster. This can be achieved by using something like `RAND() < X`, during the SQL query.
+
+4. If you hash some variable on your SQL query, you can get the same dataset everytime (by making choices based on the modulo of the hash). This also can be made so that information leakage is prevented. For instance, if you can have multiple instances on the same day that correspond to one single element, then hashing the year concatenated with the month, together with a choice based on the modulo of the hashing, can prevent this information leakage.
+
+### Build the model
+
+*to be continued*
