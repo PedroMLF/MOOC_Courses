@@ -56,4 +56,8 @@
 
 ### Build the model
 
-*to be continued*
+![](images/04.png)
+
+1. Think "steps", not "epochs" with production-ready distributed models:
+- Gradient updates from slow workers could get ignored.
+- When retraining a model with fresh data, we will resume from earlier number of steps (and correspodning hyper parameters).
