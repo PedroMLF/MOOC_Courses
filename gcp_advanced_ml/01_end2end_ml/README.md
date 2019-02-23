@@ -61,3 +61,26 @@
 1. Think "steps", not "epochs" with production-ready distributed models:
 - Gradient updates from slow workers could get ignored.
 - When retraining a model with fresh data, we will resume from earlier number of steps (and correspodning hyper parameters).
+
+### Hands-on Lab 3
+
+1. Two types of features:
+- Dense.
+- Sparse.
+
+2. DNNs are good for dense, highly-correlated inputs.
+
+3. Linear models are better at handling sparse, independent features.
+
+4. Wide-and-deep models let you handle both:
+- Memorization relevance, from linear models.
+- Generalization diversity, from DNNs.
+
+![](images/05.png)
+
+
+---
+
+## Week 3
+
+_to be continued_
