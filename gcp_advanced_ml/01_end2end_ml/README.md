@@ -83,4 +83,22 @@
 
 ## Week 3
 
-_to be continued_
+### Operationalize the model
+
+1. Key benefits of using Cloud Dataflow are:
+- It allows us to process and transform large amounts of data in parallel.
+- It supports both streaming and batch jobs.
+
+2. Apache Beam:
+- Is a unified model for defining both batch and streaming data parallel processing pipelines (sequences of steps that transform data from one thing to another).
+- Set of language specific SDKs for constructing pipelines and runners for executing them on distributed processing backends.
+
+3. Dataflow executes the code written using Apache Beam's API.
+
+![](images/06.png)
+
+![](images/07.png)
+
+![](images/08.png)
+
+
