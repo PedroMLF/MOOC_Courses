@@ -78,6 +78,7 @@
 
 ![](images/05.png)
 
+5. During the lab the concept of _feature crosses_ is used. In tensorflow, this is implemented with hashing, and, since you are representing a number of variables on a smaller space, it is possible to have category collision (different categories pointing to the same hash). They mention that this is something we have to deal with, for the greater good of being able to use feature crosses (that help performance). Nonetheless they also suggest to include the original (uncrossed) features, so that the model has the chance of learning to distinguish example where hash collision occur.
 
 ---
 
@@ -101,4 +102,6 @@
 
 ![](images/08.png)
 
+### Cloud ML engine
 
+_to do_
