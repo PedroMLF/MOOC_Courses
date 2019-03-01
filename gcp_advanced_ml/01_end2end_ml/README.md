@@ -104,4 +104,20 @@
 
 ### Cloud ML engine
 
-_to do_
+1. By convention `task.py` calls `model.py`.
+
+![](images/09.png)
+
+![](images/10.png)
+
+![](images/11.png)
+
+2. Use gcloud command to submit trainings jobs locally or on the cloud.
+
+![](images/12.png)
+
+3. The scale-tier defines the type of hardware and the number of instances, used to run a given job.
+
+4. Monitor the jobs with GCP console and TensorBoard.
+
+
