@@ -120,4 +120,28 @@
 
 4. Monitor the jobs with GCP console and TensorBoard.
 
+### BigQuery ML
+
+_to add_
+
+### Deploying and predicting with Cloud ML Engine
+
+1. Cloud ML Engine makes deploying models and scaling the prediction infrastructure easy.
+
+![](images/13.png)
+
+2. You can't reuse the training input function for serving
+![](images/14.png)
+
+3. Three necessary steps:
+- The `serving_input_fn()` specifies what the call of the `predict()` method must provide.
+- Deploy a trained model to GCP.
+![](images/15.png)
+- Client code can make REST Calls.
+![](images/16.png)
+
+
+
+
+
 
