@@ -122,7 +122,14 @@
 
 ### BigQuery ML
 
-_to add_
+1. Simplifies the process of creating a ML model by reducing it to these steps:
+- Use SQL for machine learning.
+- Train models over all available data in BigQuery
+- No need of worrying about hypertuning and feature transformations
+
+2. End-to-end BQML process:
+
+![](images/17.png)
 
 ### Deploying and predicting with Cloud ML Engine
 
@@ -140,8 +147,11 @@ _to add_
 - Client code can make REST Calls.
 ![](images/16.png)
 
+### Hands-on Lab 7
 
+1. One of the options too productize the model is to use App Engine to invoke ML predictions:
 
+![](images/18.png)
 
 
 
