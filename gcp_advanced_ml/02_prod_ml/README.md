@@ -94,6 +94,7 @@
 3. Commonly, you might want to use dynamic, but in practice you start with static, since it's simpler.
 
 4. Reference architecture for static training
+
 ![](images/03.png)
 
 5. There are three potential architectures for dynamic training:
@@ -102,19 +103,24 @@
 - Cloud Dataflow (for continuous training)
 
 6. Using Cloud Functions:
+
 ![](images/04.png)
 
 7. Using Cloud Composer:
+
 ![](images/05.png)
 
 8. Using AppEngine:
+
 ![](images/06.png)
 
 9. Using Dataflow
+
 ![](images/07.png)
 
 #### Serving design decisions
 1. It is possible to serve statically or dinamically. The decision is based on a tradeoff between storage costs, CPU costs, and latency.
+
 ![](images/08.png)
 
 ![](images/09.png)
@@ -124,6 +130,7 @@
 - *Cardinality*, number of values in the set
 
 3. The peakedness vs cardinality space gives us which type of serving to use. The hybrid approach has the most common values stored, and the long tail being dinamically computed, as requested.
+
 ![](images/10.png)
 
 4. Examples:
@@ -136,4 +143,6 @@
 - Model accepts and passes keys as input
 - Write predictions to a data warehouse (e.g. BigQuery)
 
+#### Serving on Cloud MLE
 
+![](images/11.png)
