@@ -8,7 +8,7 @@
 
 #### Data ingestion
 1. It might require streaming or batching.
-2. GCP offers three solutions, PubSub, BigQuery, and Cloud Storage.
+2. GCP offers three solutions, PubSub (streaming), BigQuery (structured batch), and Cloud Storage (unstructured batch, for example, to train on that data later).
 
 #### Data analysis
 1. Poor data might introduce bugs that are really hard to catch.
@@ -77,9 +77,8 @@
 #### Pipeline storage
 1. Offered through Cloud Storage.
 
----
 
-### Week 1 - Design Decisions
+### Design Decisions
 
 #### Training design decisions
 1. Training might be static or dynamic. The major difference between them is that dynamic training requires the deployed model to keep gathering data, to re-train itself.
@@ -143,6 +142,31 @@
 - Model accepts and passes keys as input
 - Write predictions to a data warehouse (e.g. BigQuery)
 
-#### Serving on Cloud MLE
+### Serving on Cloud MLE
 
 ![](images/11.png)
+
+### Designing an Architecture from Scratch
+
+1. Things to keep in mind:
+- What sort of training architecture is appropriate?
+- What is the relationship between the features and labels like?
+- Reasoning about the peakedness and cardinality of the data.
+
+---
+
+## Week 1 - Ingesting Data for Cloud-Based Analytics and ML
+
+### Introduction
+
+1. Data must be on the cloud to be leveraged by ML models.
+
+2. Some challenges to get the data onto the cloud:
+- Too much data
+- Too little bandwidth
+- Checksumming, encryption, firewalls
+- No time and few resources
+
+3. How to get your data on GCP?
+
+![](images/12.png)
