@@ -170,3 +170,67 @@
 3. How to get your data on GCP?
 
 ![](images/12.png)
+
+### Data Scenarios - Data On-Premise
+
+1. Simply drag and drop into a GCP bucket.
+
+2. Use `gsutil` to move the data.
+
+3. `gsutil` has several "expected" commands. Using the flag `-m` enables multi-threading.
+
+4. There are 4 types of GC storage:
+
+![](images/13.png)
+
+### Data Scenarios - Large Datasets
+
+1. Large means > 60TB of data.
+
+2. It is possible to use a physical google device, called _Transfer Appliance_, a high-capacity storage server (1PB).
+
+3. If online transfer would take more than a week, then use transfer appliance.
+
+4. Networks bottleneck at big data scale
+
+![](images/14.png)
+
+### Data Scenarios - Data on Other Clouds
+
+1. `gsutil` allows you to transfer data from buckets setup on other regions, or even from S3 instances, etc.
+
+2. It is possible to use the _transfer service_, using the GUI.
+
+### Data Scenarios - Existing Databases
+
+1. Choosing where your data should be stores
+
+![](images/15.png)
+
+2. Examples:
+- Structured log data from monitoring IoT applications -> BigTable or Spanner
+- Migrating your data analytics and reporting warehouse -> BigQuery
+- Existing legacy Hadoop jobs -> DataProc (and run those jobs inside of a fully managed service)
+
+3. BigQuery data transfer service
+
+![](images/16.png)
+
+4. Migrate databases to Cloud SQL/Spanner/Big Table
+
+![](images/17.png)
+
+5. Migrate Hadoop or HDFS to Cloud Dataproc
+
+![](images/18.png)
+
+### Demo: Automatic ETL Pipelines into GCP
+
+1. ETL Pattern 1: Push solution architecture. This architecture is best for those wanting ad-hoc or invent based loading.
+
+![](images/19.png)
+
+2. ETL Pattern 2: Pull solution architecture. This architecture is best when you have repeatable processes and scheduled intervals.
+
+![](images/20.png)
+
