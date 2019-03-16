@@ -279,7 +279,7 @@
 
 2. Feedback loops - Models have to be updated with regard to new users, new products, and new patterns. This is known as the cold start problem. The solution would be to dynamically retrain the model on newer data, besides undestanding the limits of the model. This is also true on adversarial environments, such as fraud detection.
 
-### Mitigatin Training-Serving Skew
+### Mitigating Training-Serving Skew
 
 1. Caused by:
 - A discrepancy between how you handle data in the training and serving pipelines
@@ -290,6 +290,34 @@
 - Different library versions that are functionally equivalent but optimized differently
 - Different library versions that are not functionally equivalent
 - Re-implemented solutions
+
+### Lab: Serving ML Predictions in batch and real-time
+
+![](images/21.png)
+
+[code](https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/deepdive/06_structured/serving)
+
+### Debugging a Production Model
+
+1. Example - Predicting widget demand
+
+![](images/22.png)
+
+2. Suddenly sales and inventory storage is down
+- Feedback loop! Bad data -> ML Model -> Predicts low demand -> Product turnover increases -> ML Model
+- Also a reminder that we often optimize for someting other than what we ultimate care about. In this case we were optimizing for matching predicted demand, when what we cared about was minimizing carrying costs in order to maximize profits.
+
+3. Avoid treating dependent entries as independent, as they might fool the model.
+
+4. Pause deployment whenever something out of the ordinary happens (avoids collecting poor data).
+
+### Summary
+
+1. Keep humans in the loop.
+
+2. Prioritize maintainability.
+
+3. Get ready to roll back.
 
 ---
 
