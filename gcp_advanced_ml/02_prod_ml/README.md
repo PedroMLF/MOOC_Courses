@@ -323,7 +323,189 @@
 
 ## Week 2 - Designing High-performance ML Systems
 
-_tbd_
+### Introduction
+
+1. Some problems require optimizing IO speed, others computational speed. Different focus requires different ML infrastructure.
+
+2. Main solutions are:
+- Better specific hardware
+- Distributed systems
+- Different model architectures
+
+### Aspects of Performance - Training
+
+1. One key aspect of ML is the time it takes to train the model to the same accuracy (or whatever metric being considered).
+
+2. One of the things to consider is a training budget:
+- Time
+- Money
+- Scale
+
+3. Example: Imagine you need to train a model everyday. 
+- You are capped at something like 18h, to accomodate for the other parts. 
+- In terms of cost, you don't want to spend the money training a model if the business uplift doesn't outscale that cost. 
+- Finally, time and cost budget dictate the data set size, as larger datasets generally yield better results, but suffer more from diminishing returns. Another aspects to consider is to decider whether to use a single machine or to distribute training, as well as using early checkpoint to resume your training.
+
+4. There are typically 3 constraints:
+
+![](images/23.png)
+
+### Aspects of Performance - Predictions
+
+1. The time spent during predictions is also a key aspect.
+
+2. The things to consider for batch prediction are fairly similar to the ones mentioned on the previous subsection.
+
+3. Online predictions are different:
+- Single machine -> Can be scaled to multiple workers using microservices (Kubernetes or App Engine. Cloud ML Engine predictions make the equivalent to this).
+- The performance target is QPS (queries per second).
+
+4. Some considerations, as having the top X% predictions stored and served in batch, and the rest online, might be helpful. These values are often better defined after the system is already implemented.
+
+### Aspects of Performance - Why distributed training?
+
+1. In order to provide flexibility to different ways of scaling performance, the code has to allow the user to use different approaches.
+
+2. Distributed training allows you to process data faster.
+
+### Aspects of Performance - Distributed training architectures?
+
+1. Device == worker == accelerator, and refer to things as GPUs, TPUs.
+
+2. There are different approaches to distributed training, and the chosen one is based on:
+- Size of the model
+- Amount of training data
+- The available devices
+
+3. The most common approach is _data parallelism_, i.e., the same model on different devices, but all using different training samples.
+
+![](images/24.png)
+
+4. There are two approaches to data parallelism:
+- _Async parameter server_:  Some devices are designated to be parameter servers and other to be workers. Each worker independently fetches the latest parameters from the parameter server, and computes gradients based on a subset of training samples. It then sends the gradients back to the parameter server which updates its copy of the parameters with those gradients. Each worker can do this independently. The upside from this approach is that it scales easily, workers might be preempted by higher priority jobs, and it's resilient to machines going down, since the workers are not waiting for each other. The downside is that workers can get out of sync, delaying convergence.
+
+![](images/25.png)
+
+- _Sync Allreduce_: Each worker (on one host) holds a copy of the model, and updates the gradients based on the input samples that they receive, and then communicate them between themselves. Since workers are synchronized, the next step of optimization will only begin after all the workers have received the updated their parameters based on all gradients. With devices on a controlled environment and with strong communication links, the overhead of synchronization is also small. Therefore, overall it can lead to faster convergence.
+
+![](images/26.png)
+
+5. When to choose each of the approaches?
+
+![](images/27.png)
+
+6. Besides data parallelism, it is also possible to use _model parallelism_. This is important when working with larger models, and we can split the different layers among different workers.
+
+### Faster input pipelines - Faster input pipelines
+
+1. Always useful, regardless of the approach (data/model parallelism). Nonetheless, it's more important if are IO bound.
+
+2. It is particularly important if we are using distributed training, where we have to "feed" several different workers.
+
+3. Slowest to fastest approaches
+- Directly feed from Python (slowest)
+- Native TF Ops
+- Read transformed TF records (fastest)
+
+![](images/28.png)
+
+### Faster input pipelines - Native TF operations
+
+![](images/29.png)
+
+1. Since key functions make use of C++, it's important to don't take it back to Python back again.
+
+2. Notice the shuffle. It is necessary due to the nature of _data parallelism_. In particular, we read 10 times the batch size, shuffle it, and then serve one batch at each time. This will, hopefully, make each worker hold the data on a different order.
+
+![](images/30.png)
+
+### Faster input pipelines - TF Records
+
+1. Fast efficient batch reads, without the overhead of having to parse data in Python.
+
+![](images/31.png)
+
+![](images/32.png)
+
+![](images/33.png)
+
+![](images/34.png)
+
+### Faster input pipelines - Parallel pipelines
+
+1. Input pipelines can be thought of as an ETL process:
+- Extract: Read the data from persistent storage
+- Transform: Use CPU cores to parse and perform preprocessing operations
+- Load: Load the transform data onto the accelerator devices
+
+2. Example using TF Records approach
+
+![](images/35.png)
+
+3. This leads to an input pipeline bottleneck. If we overlap the different stages, which are using different resources, we can improve perfomance by doing something called _pipelining_.
+
+![](images/36.png)
+
+4. These are down by using `num_parallel_reads`, `num_parallel_calls`, and `buffer_size` on the previous example.
+
+![](images/37.png)
+
+5. This leads to:
+
+![](images/38.png)
+
+6. Other possible way of improving performance is by fusing steps:
+
+![](images/39.png)
+
+![](images/40.png)
+
+### Data Parallelism - All Reduce
+
+1. Example:
+
+![](images/41.png)
+
+- Leads to:
+
+![](images/42.png)
+
+2. Mirrored strategy implements synchronous all-reduce architecture. The model's parameters are mirrorred across all devices. Each device compute loss and gradients based on a slice of the input data, which are then aggregated across all devices using an all reduce algorithm, that is best for the device topology. Furthermore:
+- No change to the model or training loop
+- No change to input function (requires `tf.data.Dataset`)
+- Checkpoints and summaries are seamless
+
+### Parameter server approach
+
+1. Although not as clean and simple as the all reduce approach, it is more mature and it is applicable to both data and model parallelism.
+
+2. To use it, all you need to do is to use an estimator and call the train and evaluation methods. Cloud ML, for instance, will choose the appropriate low level code for the chosen estimator.
+
+### Inference
+
+1. There are different requirements to consider:
+- Queries per second
+- Latency, meaning how long does a query takes
+- Costs, in terms of infrastructure and maintenance
+
+2. Approaches
+- REST/HTTP API for streaming pipelines
+- Cloud ML Engine for batch pipelines
+- Cloud dataflow that can deal with streaming and batch
+
+3. In inference, batch referes to a bounded dataset.
+
+4. Performance for batch pipelines
+
+![](images/44.png)
+
+![](images/43.png)
+
+5. Performance for streaming pipelines
+
+![](images/45.png)
+
+![](images/46.png)
 
 ---
 
