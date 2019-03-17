@@ -511,4 +511,56 @@
 
 ## Week 2 - Hybrid ML Systems
 
-_tbd_
+### Introduction
+
+1. You might not be able to do ML solely on google cloud services
+- Tied to on-premise infrastructure
+- Multi cloud system architecture
+- Running ML on the device itself
+
+### Kubeflow - ML on hybrid cloud
+
+1. In order to build hybrid ML systems that work well on-premises and in the cloud, your ML framework has to support
+- Composability: Ability to compose a bunch of micro-services among the different steps of a ML system
+- Portability: How is easy is it to port the steps of our approach from the experimentation environment to the training/cloud environments
+- Scalability: More everything
+
+### Kubeflow - Kubeflow
+
+1. Kubeflow is a machine learning toolkit for Kubernetes.
+
+2. Offers composability and portability.
+
+![](images/47.png)
+
+### Optimizing TF for mobile - Embedded Models
+
+1. Increasingly, applications are combining ML with mobile apps.
+
+2. ML models can help extract meaning from raw data, thus reducing network traffic:
+
+![](images/48.png)
+
+3. For mobile devices, we often can't use the microservices approach.
+
+4. We'd like to train the model, embed the model on the device, and make predictions on the device.
+
+### Optimizing TF for mobile - TF Lite
+
+1. TF Lite:
+- Reduced code footprint
+- Quantization
+- Lower precision arithmetic
+
+2. A new topic of research is federated learning, where the model is continuously trained on the device, and then you combine the model updates from a federation of user devices to update the overall model.
+
+
+### Optimizing TF for mobile - Optimizing for mobile
+
+1. Large neural networks can be compressed:
+- _Freeze graph_: Load time optimization, with the setback of no longer being possible to retrain the model, as variables are now constants. It also removes checkpoints.
+- _Transform the graph_: Strip unused nodes, in particular, nodes only used during training; Transform multiples operations into single operations.
+- _Quantize weights and calculations_: Quantize weights, which is model size/accuracy tradeoff.
+
+2. These changes can reduce the size of a model from 91MB (12MB binary) to 23MB (1.5MB binary).
+
