@@ -117,3 +117,85 @@
 1. If we have no labeled data at all we can:
 - Use a pre-trained model on a task close enough to ours
 - Find a partner to label our data (there's a GCP solution for that)
+
+## Week 3 - Going Deeper, Faster
+
+1. The closer the layers to the classification/task specific layers, the more intricate the learned features are.
+
+2. Deeper networks require different sets of considerations to be trainable, ideally, fast.
+
+## Week 3 - Batch Normalization, Residual Networks, and Accelerators
+
+### Batch Normalization
+
+1. One of the culprits of long training times is _internal covariant shift_. This basically happens because we are updating the weights of certain layers based on values of previous layers, that might no longer be the optimal. This eventually make neurons enter the saturation zone of the non-linearities being used, and thus, they stop learning.
+
+2. One of the approaches to solve this is to lower the learning rate. But this increases the training time.
+
+3. One other approach is to use dropout. But this could hinder the possibility of the some layers fully exploring the data.
+
+4. A better solution is to use batch normalization, i.e. scaling the weights between layers. In particular, they're transformed in a way that the weights of a given layer have average zero and standard deviation of one. This helps the model being trained while having more layers, but also to train faster. Batch normalization is only done during training.
+
+### Residual Networks
+
+1. One other issue with deep networks is the gradient preservation, in particular vanishing gradients. Batch normalization only works to some extent in this case.
+
+2. ResNets approaches this problem by introducing a different, repeating architecture, that makes use of an "identity shortcut". In particular, instead of trying to learn a mapping between the input and the output, that becomes harder for deeper networks, this network is trying to learn the difference between the desired output and the original inputs.
+
+![](images/03.png)
+
+### Accelerators (CPU vs GPU/TPU)
+
+1. GPUs enabled much faster training.
+
+![](images/04.png)
+
+2. TPUs are application specific chips (ASICs), custom built for machine learning.
+
+## Week 3 - TPU Estimator
+
+### TPU Estimator
+
+1. 4 steps to make a TPUEstimator:
+- Replace our optimizer
+- Replace our EstimatorSpec
+- Replace our RunConfig
+- Replace our Estimator
+
+![](images/05.png)
+
+![](images/06.png)
+
+![](images/07.png)
+
+![](images/08.png)
+
+2. Things to consider:
+- User higher batch size, to avoid waiting for disk operations.
+- Checkpoint less often
+- Use data parallelism
+- First make sure the code work without TPU, and then use it. That's because TPUs change the graph, and that makes debugging much harder
+
+3. More things to consider:
+- TPUS have 4 chips, each chip has 2 cores, and each core has 8GB memory. Finally, there are 64 TPUs per pod
+- TPUs provide high-speed interconnect: Scaling with the number of cores is pretty much linear
+- TPUs offer much larger matrix multiplication
+- TPUs are most efficient with batches of 128, or multiples of it
+- TPUs have a specialized instruction set
+- TPUs use bfloat (different representation of 16bit), or float32 floating point representation. The maximum benefir comes from using bfloat, and furthermore, even you use float32, the matrix multiply will be carried out in bfloat. So, cases that absolutely require double-precision arithmetic are not a good fit for TPUs
+
+## Week 3 - Neural Architecture Search (NAS)
+
+### Neural Architecture Search
+
+1. Its goal is to automate the building of models
+
+2. It is possible to use RL to design NNs, by repeating the following cycle:
+
+![](images/09.png)
+ 
+3. This is one of the key concepts of AutoML
+
+4. With the rise of AutoML approaches, the main focus will be on:
+- Data discovery, curation, processing
+- Asking good questions, choosing good models
