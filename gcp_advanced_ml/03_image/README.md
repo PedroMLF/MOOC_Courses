@@ -112,6 +112,8 @@
 - First we replace the output specific layer (the one with output dimension equal to the number of classes)
 - Then, we have to decide on how many layers of the convolutional part we unfreeze. If we have a smal dataset, we freeze the model; if we have a large dataset, we unfreeze more layers.
 
+6. LAB: [instructions](https://googlecoursera.qwiklabs.com/focuses/25460)
+
 ## Week 3 - No data, No problem
 
 1. If we have no labeled data at all we can:
@@ -199,3 +201,7 @@
 4. With the rise of AutoML approaches, the main focus will be on:
 - Data discovery, curation, processing
 - Asking good questions, choosing good models
+
+## AutoML Vision
+
+1. AutoML is built with neural architecture search (NAS).
