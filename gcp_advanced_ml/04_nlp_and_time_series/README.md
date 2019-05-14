@@ -136,3 +136,112 @@
 5. It might be useful to "resample data". For instance, by averaging all available points for one day.
 
 6. It is also possible to use different models for different sensors, assuming they are providing different information. A better way to tackle this would be to enrich the model with some discrete variable, regarding the location of the sensor, for instance. These kind of features should be added to the final DNN layer.
+
+---
+
+## Week 2 - Text Classification
+
+### Introduction
+
+1. Convert sentences into a numeric representation
+- Create a mapping from each word to a unique integer
+- Encode each sentence as a sequence of those integers
+- Pad each sequence to a constant length
+- Convert each integer into an embedded representation with meaningful magnitude
+
+2. We usually encode only the top K most common words.
+
+![](images/12.png)
+
+![](images/13.png)
+
+![](images/14.png)
+
+![](images/15.png)
+
+### Selecting a Model
+
+1. CNNs have good properties for text classification.
+
+### Python vs Native Tensorflow
+
+1. Our code has to be ready to receive only text, and preprocess it at runtime.
+
+2. This should be done in native TensorFlow for better performance. The good thing of writing this directly in TensorFlow is that we can make it work in any device.
+
+3. Example of the needed transformations:
+
+![](images/16.png)
+
+---
+
+## Week 2 - Reusable Embeddings
+
+### Word Embeddings
+
+1. A fundamental concept is "The Distributional Hypothesis".
+
+2. Matrix factorization:
+- Creates smaller embeddings row and column domains.
+- Widely used in machine learning.
+
+3. Matrix factorization minimizes reconstruction error:
+
+![](images/17.png)
+
+4. Trading off quality and usefulness with dimensionality
+
+![](images/18.png)
+
+5. Matrix factorization can be very expensive.
+
+6. It is possible to formulate this as a supervised task, by training a model that learns to predict a word given its context.
+
+7. A well known approach to this problem is called word2vec.
+
+![](images/19.png)
+
+8. Normal cross-entropy is impractical in this case, because of the number of classes. A good way to overcome this is by using negative sampling, meaning that on the denominator we only sum over a subset of the classes. In particular, we use all the positive words (which are less) and only sample part of the negative words (which are all the other words which are not part of the context).
+
+9. A possible way of further reducing the complexity of the task is by removing common words (such as "A", "the", etc.).
+
+10. Word2vec embeddings are compositional.
+
+11. GloVe is a hybrid between matrix factorization and window-based methods, taking advantage of co-occurrence matrixes.
+
+![](images/20.png)
+
+12. Pre-trained embeddings work well for general-purpose tasks.
+
+---
+
+## Week 2 - Encoder-Decoder Models
+
+### Encoder-Decoder Networks
+
+1. It follows the following logic:
+![](images/21.png)
+
+2. The best way to decode in inference time is through beam search.
+
+3. It is possible to improve these models with attention networks.
+
+4. To train such a model in TF we have to:
+- Embed
+- Encode
+- Attend
+- Predict
+
+![](images/22.png)
+
+5. To add attention:
+
+![](images/23.png)
+
+6. It is possible to use Tensor2Tensor to solve these kind of tasks.
+
+### AutoML and DialogFlow
+
+1. It is possible to apply AutoML to Machine Translation.
+
+2. To obtain conversational interfaces it is possible to use DialogFlow.
