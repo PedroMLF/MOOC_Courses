@@ -106,3 +106,65 @@
 12. Even though the update depends on the full column factor, it is possible to distribute WALS by precomputing the Gramian G (Gramian is the determinant if the matrix inner product X transpose X).
 
 ![](images/10.png)
+
+## Week 1 - Implementing ALS in TensorFlow
+
+1. WALS requires whole rows or columns, therefore the data has to be preprocessed to provide SparseTensors of rows/columns.
+
+![](images/11.png)
+
+![](images/12.png)
+
+2. WALS Matrix Factorization Estimator:
+
+![](images/13.png)
+
+3. The input function has to read the files and create sparse tensors for the rows and columns.
+
+![](images/14.png)
+
+![](images/15.png)
+
+4. Decode the TF Record files and invoke sparse_merge to create the necessary SparseTensor.
+
+![](images/16.png)
+
+![](images/17.png)
+
+5. Remap keys to SparseTensor to fix re-indexing after batching
+
+![](images/18.png)
+
+![](images/19.png)
+
+![](images/20.png)
+
+![](images/21.png)
+
+![](images/22.png)
+
+![](images/23.png)
+
+![](images/24.png)
+
+6. Typically only the top K items by user are stored (or vice-versa).
+
+7. Tensorflow Transform uses Cloud DataFlow in the analysis stage to create assets that TensorFlow uses in training and prediction:
+- Read Google Analytics data from BigQuery.
+- TF-Transform for analysis.
+- Transform function that TF will use.
+- Create vocabulary of VisitorID -> UserId and ContentId->ItemID
+- Create the group-by dataset
+- Convert to TF Records
+- Write to cloud storage
+
+![](images/25.png)
+
+8. Collaborative filtering.
+- Pros: No domain knowledge; Serendipity; Great starting point.
+- Cons: Fresh items/users?; Context features?
+
+9. To solve cold-start problems we might use a hybrid of content+collaborative filtering.
+
+![](images/26.png)
+
