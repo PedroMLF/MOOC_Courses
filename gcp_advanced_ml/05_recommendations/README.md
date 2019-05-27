@@ -168,3 +168,39 @@
 
 ![](images/26.png)
 
+---
+
+## Week 2 - Neural Networks for Recommendation Systems
+
+1. Real-world recommendation systems are a hybrid of three broad theoretical approaches:
+
+![](images/27.png)
+
+![](images/28.png)
+
+2. Designing a movie recommendation system.
+- Content based ideas:
+
+![](images/29.png)
+
+- Collaborative filtering ideas:
+
+![](images/30.png)
+
+- Knowledge-base systems ideas:
+
+![](images/31.png)
+
+## Week 2 - Incorporating Context
+
+1. Example of context components
+- Mood at the time
+- Where you are
+- Who you are with
+- When you are experiencing the item
+- etc.
+
+2. Context-aware recommendation systems (CARS)
+- Matrix is: users x items x context
+
+3. 
