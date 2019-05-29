@@ -203,4 +203,72 @@
 2. Context-aware recommendation systems (CARS)
 - Matrix is: users x items x context
 
-3. 
+3. There are three types of CARS algorithms:
+- Contextual prefiltering.
+- Contextual postfiltering.
+- Contextual modeling.
+
+4. Contextual prefiltering:
+- A context matrix is used to filter some results.
+- There are several different algorithms within contextual prefiltering. In _Item splitting_, where items are split into item context pairs. It uses the t-test to find splits. Similarly, there is _User splitting_. Finally, there is _User-item splitting_, which makes splits across both user and item dimensions at the same time.
+
+![](images/32.png)
+
+5. Contextual postfiltering:
+- The main methods are _weight_ (weight calculated based on similar users) and _filter_ (filter items with value below a given threshold.).
+
+![](images/33.png)
+
+![](images/34.png)
+
+![](images/35.png)
+
+6. Contextual modeling:
+- One of the main algorithms is the _Deviation-Based Context-Aware Matrix Factorization_. This implies knowing: How is user's rating deviated?; Contextual rating deviation (CRD); Looking at the deviations of users across context dimensions.
+
+![](images/36.png)
+
+7. For example, in the figure below, this means that the ratings for `Home` are usually 0.8 higher than for `Theater`, etc.
+
+![](images/37.png)
+
+![](images/38.png)
+
+![](images/39.png)
+
+![](images/40.png)
+
+8. YouTube case study - Overview
+- It uses two neural networks to recommend videos.
+
+![](images/41.png)
+
+9. YouTube case study - Candidate Generation
+
+![](images/42.png)
+
+![](images/43.png)
+
+![](images/44.png)
+
+10. YouTube case study - Ranking
+- Video are weighted based on their watch time.
+
+![](images/45.png)
+
+![](images/46.png)
+
+![](images/47.png)
+
+![](images/48.png)
+
+## Week 2 - Building an End-to-End Recommendation System
+
+1. In recommendation systems it is necassary to automatically refresh the data, retrain the model, and redeploy the model.
+
+![](images/49.png)
+
+2. Two methods for running automated workflows on ML datasets will be explored:
+- Regular end of the day schedule.
+- Triggered workflow.
+
