@@ -272,3 +272,45 @@
 - Regular end of the day schedule.
 - Triggered workflow.
 
+**Apache Airflow Environment**
+
+3. Apache Airflow DAGs (Directed Acyclic Graph) can be used to orchestrate GCP services.
+
+4. Cloud Composer is to Apache Airflow as Cloud ML Engine is to TensorFlow.
+
+**DAGs and Operators**
+
+5. The DAGs folder is simply a GCS bucket where the pipeline code is loaded into.
+
+6. Airflow workflows are written in Python. This file creates a DAG.
+
+7. Airflow uses _operators_ in your DAG to orchestrate other GCP services. Generally, you will only see one operator per task. These include _BigQuery operators_, _MLEngine Operators_, etc. Example of workflow using operators:
+
+![](images/50.png)
+
+8. Bad upstream data can ruin workflows. Therefore it is necessary to incorporate _health checks_ directly into the workflow (for instance the _BigQueryCheckOperator_ and the _BigQueryIntervalCheckOperator_).
+
+![](images/51.png)
+
+![](images/52.png)
+
+9. The end of the provided code should set up the DAG dependencies. The visual UI is a great way to verify that everything is defined correctly.
+
+**Workflow Scheduling**
+
+10. Scheduling operations:
+- Periodic
+- Event-driven
+
+![](images/53.png)
+
+**Monitoring and Logging**
+
+11. Monitor and alert based on pipeline status and auto retry in case of failure.
+
+12. Monitor and troubleshoot Airflow step errors in logs.
+
+13. Monitor Dataflow and Cloud Function health in Stackdriver.
+
+14. It is good practice to manually run the DAG before scheduling or triggering it.
+
